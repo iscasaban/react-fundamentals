@@ -4,10 +4,11 @@
 import * as React from 'react'
 import '../box-styles.css'
 
-function Box({className = '', style, ...otherProps}) {
+function Box({style, size, className = '', ...otherProps}) {
+  const sizeClassName = size ? `box--${size}` : ''
   return (
     <div
-      className={`box ${className}`}
+      className={`box ${className} ${sizeClassName}`}
       style={{fontStyle: 'italic', ...style}}
       {...otherProps}
     />
@@ -21,38 +22,23 @@ function Box({className = '', style, ...otherProps}) {
 // matches what the text says it should be
 // 🐨 also use the style prop to make the font italic
 
-const smallBox = (
-  <Box
-    id="small--box"
-    className="box box--small"
-    style={{backgroundColor: 'lightblue'}}
-  >
-    small lightblue box id = 'small--box'
-  </Box>
-)
-const mediumBox = (
-  <div
-    className="box box--medium"
-    style={{fontStyle: 'italic', backgroundColor: 'pink'}}
-  >
-    medium pink box
-  </div>
-)
-const largeBox = (
-  <div
-    className="box box--large"
-    style={{fontStyle: 'italic', backgroundColor: 'orange'}}
-  >
-    large orange box
-  </div>
-)
-
 function App() {
   return (
     <div>
-      {smallBox}
-      {mediumBox}
-      {largeBox}
+      <Box size="small" style={{backgroundColor: 'lightblue'}}>
+        small lightblue box
+      </Box>
+
+      <Box size="medium" style={{fontStyle: 'italic', backgroundColor: 'pink'}}>
+        medium pink box
+      </Box>
+
+      <Box
+        size="large"
+        style={{fontStyle: 'italic', backgroundColor: 'orange'}}
+      >
+        large orange box
+      </Box>
     </div>
   )
 }
